@@ -9,4 +9,4 @@ Create a virtual environment with conda using this command:
 conda create -n TensorFlowML
 
 Activate the Virtual Environment as :
-source activate TensorflowMLL
+source activate TensorflowML
