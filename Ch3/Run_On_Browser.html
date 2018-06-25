@@ -43,15 +43,13 @@ function success(data)
 {
     var wd_idx = new Object();
     lst = data.split(/\r?\n|\r/)
-
     for(var i = 0 ; i < lst.length ;i++){
         key = (lst[i]).split(',')[0]
         value = (lst[i]).split(',')[1]
         
         if(key == "")
             continue
-        wd_idx[key] = parseInt(value)
-        
+        wd_idx[key] = parseInt(value)  
     }
     
     word_index = wd_idx
@@ -69,7 +67,6 @@ function create_sequences(txt)
         if (Object.keys(word_index).includes(words[i])){
             seq[i+start] = word_index[words[i]]
         }    
-        
     }
     return seq
 }
@@ -77,7 +74,6 @@ function create_sequences(txt)
 //Main predict function
 async function predict()
 {
-	
     txt  = document.getElementById("userInput").value
     alert(txt);
     seq = create_sequences(txt) 
@@ -92,14 +88,13 @@ async function predict()
 async function init()
 {
     word_index = undefined
-	console.log('Start loading dicionary')
+	console.log('Start loading dictionary')
 	await loadDict()
 	//console.log(word_index)
-	console.log('Finish loading dicionary')
+	console.log('Finish loading dictionary')
 	console.log('Start loading model') 
 	model = await createModel()
 	console.log('Finish loading model') 
-	
 }
 
 model =undefined
