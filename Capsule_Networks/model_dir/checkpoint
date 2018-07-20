@@ -1,0 +1,6 @@
+model_checkpoint_path: "model.tfmodel-9"
+all_model_checkpoint_paths: "model.tfmodel-5"
+all_model_checkpoint_paths: "model.tfmodel-6"
+all_model_checkpoint_paths: "model.tfmodel-7"
+all_model_checkpoint_paths: "model.tfmodel-8"
+all_model_checkpoint_paths: "model.tfmodel-9"
