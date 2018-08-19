@@ -1,4 +1,4 @@
-# Preparation Time Prediction
+# Capsule Networks
 This repo consists of an implementation of Capsule Networks as demonstrated by this paper [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829) on Fashion MNIST dataset.
 ### Installations 
 * This code is checked on using native Python 3 with anaconda
