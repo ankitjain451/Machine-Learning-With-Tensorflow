@@ -1,7 +1,7 @@
 '''
 This is the main file that will be used to generate TV Scripts using Simpson's Dataset
 '''
-from utils2 import *
+from utils import *
 from parameters import *
 from model import Model
 
