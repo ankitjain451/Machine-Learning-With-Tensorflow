@@ -72,8 +72,8 @@ class PlotData:
         x_mesh, y_mean, y_var = self.gp_model.make_gp_predictions(start_year=train_start, end_year=train_end,
                                                                   pred_year=pred_year,
                                                                   pred_quarters=pred_quarters)
-        y_lower = np.squeeze(y_mean - np.sqrt(y_var))
-        y_upper = np.squeeze(y_mean + np.sqrt(y_var))
+        y_lower = np.squeeze(y_mean - 1.96*np.sqrt(y_var))
+        y_upper = np.squeeze(y_mean + 1.96*np.sqrt(y_var))
         y_max = max(abs(min(y_lower) - 1), abs(max(y_upper) + 1))
         ax.set_ylim(bottom=-y_max, top=y_max)
 

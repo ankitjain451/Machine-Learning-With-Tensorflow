@@ -12,7 +12,6 @@ class GP:
 
     def __init__(self, company):
         self.preprocessed_data = PreProcessing(str(company))
-        #self.kernel = gpflow.kernels.RBF(2, lengthscales=1,variance = 63)+ gpflow.kernels.White(2, variance = 1e-10)
 
     def make_gp_predictions(self, start_year, end_year, pred_year, pred_quarters = []):
         start_year, end_year, pred_year= int(start_year),int(end_year), int(pred_year)

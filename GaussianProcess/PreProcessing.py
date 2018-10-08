@@ -11,7 +11,7 @@ class PreProcessing:
     def __init__(self, name):
         name= str(name)
         self.get_data(name)
-        self.data['Normalized_Close'] = self.normalized_data_col(self.data) # TODO Check Norm Adj Close
+        self.data['Normalized_Close'] = self.normalized_data_col(self.data)
         self.data['Quarter'] = self.get_quarter_col(self.data)
         self.num_days = 252
         self.prices_by_year = self.get_prices_by_year()
