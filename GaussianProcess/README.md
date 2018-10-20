@@ -5,7 +5,7 @@
 
 ### Installations
 * This code is checked on using native Python 3 with anaconda
-* Create a conda virtual environment
+* Create a conda virtual environment and install packages using requirements.txt
 * We use plug and play functions from [GpFlow](https://github.com/GPflow/GPflow) library, which is a wrapper on top of Tensorflow for Gaussian Processes. Please install that library as mentioned in the README of that repo.
 
 

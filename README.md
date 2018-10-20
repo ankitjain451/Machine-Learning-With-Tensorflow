@@ -1,9 +1,9 @@
 # Machine-Learning-With-Tensorflow
 Machine Learning Projects with Tensorflow
 
-# Instrucutions for Installations 
+# Instructions for Installations 
 
-I recommend using Anaconda installation of Python for this repo.
+For most of the projects I recommend using Anaconda installation of Python 3.6 for this repo.
 
 Create a virtual environment with conda using this command:
 conda create -n TensorFlowML
