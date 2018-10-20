@@ -67,8 +67,8 @@ def main():
     print ("Training the model")
     train(model,int_text)
 
-    print ("Generating the TV Script")
-    predict_tv_script()
+    print ("Generating the Book Script")
+    predict_book_script()
 
 
 if __name__ == "__main__":

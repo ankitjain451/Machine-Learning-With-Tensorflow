@@ -1,8 +1,9 @@
-# Generating TV Scripts using LSTMs
-This repo consists of an implementation of TV Script Generation code.
+# Generating Book Scripts using LSTMs
+This repo consists of an implementation of Book Script Generation code.
 
 ### Dataset
-Simpson's TV script dataset was used for this. The full dataset can be downloaded from [Kaggle] (https://www.kaggle.com/wcukierski/the-simpsons-by-the-data#simpsons_script_lines.csv)
+The dataset used was from one of the popular Packt book Mastering PostgreSQL by Hans-Jürgen Schönig. We used almost 100 pages from the book and removed any figures, tables and SQL code. 
+
 ### Installations
 * This code is checked on using native Python 3 with anaconda
 * Create a conda virtual environment and install relevant packages using requirements.txt file
@@ -14,7 +15,7 @@ To run the code just execute
 ```
 python main.py
 ```
-On CPU the code might take few hours to run. However, if you use GPUs it should be much faster
+As the dataset is not large, code can be executed on CPU itself.
 
 ### Code Details
 Code is pretty self explanatory. There are mainly four files in implementation:

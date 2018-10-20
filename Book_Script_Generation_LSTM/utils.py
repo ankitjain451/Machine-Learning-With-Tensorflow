@@ -3,7 +3,6 @@ import pickle
 from parameters import *
 import tensorflow as tf
 import numpy as np
-import csv
 
 def load_data():
     """
@@ -15,27 +14,11 @@ def load_data():
 
     return data
 
-def generate_text_data_from_csv():
-    with open(TEXT_SAVE_DIR, 'a') as text_file:
-        with open(DATA_DIR) as input_file:
-            rows = csv.reader(input_file)
-            for row in rows:
-                text = row[3].split(":", 1)
-                if len(text) > 0:
-                    text[0] = text[0].replace(" ", "_")
-                    text = ": ".join(text)
-                else:
-                    text = row[3]
-                text_file.write(text + "\n")
-    text_file.close()
-
 def preprocess_and_save_data():
     """
-    Preprocessing the TV Scripts Dataset
+    Preprocessing the Book Scripts Dataset
     """
-    generate_text_data_from_csv()
     text = load_data()
-    text= text[14:] # Ignoring the STARTraw_text part of the dataset
     token_dict = define_tokens()
     for key, token in token_dict.items():
         text = text.replace(key, ' {} '.format(token))
@@ -50,7 +33,7 @@ def preprocess_and_save_data():
 
 def load_preprocess_file():
     """
-    Loading the processed TV Scripts Data
+    Loading the processed Book Scripts Data
     """
     return pickle.load(open('processed_text.p', mode='rb'))
 
@@ -71,7 +54,7 @@ def load_params():
 def create_map(input_text):
     """
     Map words in vocab to int and vice versa for easy lookup
-    :param input_text: TV Script data split into words
+    :param input_text: Book Script data split into words
     :return: A tuple of dicts (vocab_to_int, int_to_vocab)
     """
     vocab = set(input_text)
@@ -137,13 +120,13 @@ def select_next_word(probs, int_to_vocab):
     return word
 
 
-def predict_tv_script():
+def predict_book_script():
     _, vocab_to_int, int_to_vocab, token_dict = load_preprocess_file()
     seq_length, load_dir = load_params()
 
-    script_length = 250 # Length of TV script to generate. 250 denotes 250 words
+    script_length = 250 # Length of Book script to generate. 250 denotes 250 words
 
-    first_word = 'homer_simpson' # homer_simpson, moe_szyslak, or Barney_Gumble
+    first_word = 'postgresql' # postgresql or any other word from the book
 
     loaded_graph = tf.Graph()
     with tf.Session(graph=loaded_graph) as sess:
@@ -155,7 +138,7 @@ def predict_tv_script():
         input_text, initial_state, final_state, probs = extract_tensors(loaded_graph)
 
         # Sentences generation setup
-        sentences = [first_word + ':']
+        sentences = [first_word]
         previous_state = sess.run(initial_state, {input_text: np.array([[1]])})
         # Generate sentences
         for i in range(script_length):
@@ -171,14 +154,14 @@ def predict_tv_script():
             sentences.append(pred_word)
 
         # Scraping out tokens from the words
-        tv_script = ' '.join(sentences)
+        book_script = ' '.join(sentences)
         for key, token in token_dict.items():
-            tv_script = tv_script.replace(' ' + token.lower(), key)
-        tv_script = tv_script.replace('\n ', '\n')
-        tv_script = tv_script.replace('( ', '(')
+            book_script = book_script.replace(' ' + token.lower(), key)
+        book_script = book_script.replace('\n ', '\n')
+        book_script = book_script.replace('( ', '(')
 
         # Write the generated script to a file
-        with open("TV_Script", "w") as text_file:
-            text_file.write(tv_script)
+        with open("book_script", "w") as text_file:
+            text_file.write(book_script)
 
-        print(tv_script)
+        print(book_script)

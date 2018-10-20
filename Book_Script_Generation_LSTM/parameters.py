@@ -16,6 +16,4 @@ RNN_SIZE = 128 # RNN Size
 SEQ_LENGTH = 32  # Sequence Length
 
 # Data Parameters
-
-DATA_DIR = './data/simpsons_script_lines.csv'
-TEXT_SAVE_DIR= "./data/data_text.txt"
+TEXT_SAVE_DIR= "./data/postgre_book.txt"
