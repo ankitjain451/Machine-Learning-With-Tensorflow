@@ -1,6 +1,7 @@
+import os
 
-
-DATA_DIR = '/Users/ankit.jain/Documents/Teaching&Learning/Packt/Book/BNN/Data'
+#DATA_DIR = '/Users/ankit.jain/Documents/Teaching&Learning/Packt/Book/BNN/Data'
+DATA_DIR = os.path.join(os.getcwd(),"..","Data")
 NUM_CLASSES = 43
 IMG_SIZE = 32
 

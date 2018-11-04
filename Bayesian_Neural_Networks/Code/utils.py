@@ -77,7 +77,6 @@ def preprocess_and_save_data(data_type ='train'):
         X_train = np.array(imgs, dtype='float32')
         # Make one hot targets
         Y_train = np.array(labels, dtype = 'uint8')
-        #Y_train = np.eye(NUM_CLASSES, dtype='uint8')[labels]
 
         train_data = {"features": X_train, "labels": Y_train}
         if not os.path.exists(os.path.join(DATA_DIR,"Preprocessed_Data")):
@@ -216,7 +215,7 @@ def plot_weight_posteriors(names, qm_vals, qs_vals, fname):
     names: A Python `iterable` of `str` variable names.
     qm_vals: A Python `iterable`, the same length as `names`,
       whose elements are Numpy `array`s, of any shape, containing
-      posterior means of weight varibles.
+      posterior means of weight variables.
     qs_vals: A Python `iterable`, the same length as `names`,
       whose elements are Numpy `array`s, of any shape, containing
       posterior standard deviations of weight varibles.
@@ -257,20 +256,24 @@ def plot_heldout_prediction(input_vals, probs,
     title: Python `str` title for the plot.
   """
   save_dir = os.path.join(DATA_DIR, "..", "Plots")
-  fig = figure.Figure(figsize=(6, 6))
+  fig = figure.Figure(figsize=(1, 1))
   canvas = backend_agg.FigureCanvasAgg(fig)
   ax = fig.add_subplot(1,1,1)
-  fig.suptitle(title)
   ax.imshow(input_vals.reshape((IMG_SIZE,IMG_SIZE)), interpolation="None")
   canvas.print_figure(os.path.join(save_dir, fname + "_image.png"), format="png")
 
-  fig = figure.Figure(figsize=(10, 6))
+  fig = figure.Figure(figsize=(10, 5))
   canvas = backend_agg.FigureCanvasAgg(fig)
   ax = fig.add_subplot(1,1,1)
-  sns.barplot(np.arange(NUM_CLASSES), np.mean(probs, axis=0), ax=ax)
-  ax.set_ylim([0, 1])
-  ax.set_title("Mean Predicted Probabilities for the sample")
+  #Predictions
+  y_pred_list = list(np.argmax(probs,axis=1).astype(np.int32))
+  bin_range = [x for x in range(43)]
+  ax.hist(y_pred_list,bins = bin_range)
+  ax.set_xticks(bin_range)
+  ax.set_title("Histogram of predicted class: " + title)
+  ax.set_xlabel("Class")
+  ax.set_ylabel("Frequency")
   fig.tight_layout()
-  save_dir = os.path.join(DATA_DIR, "..","Plots")
-  canvas.print_figure(os.path.join(save_dir, fname + "_mean_pred.png"), format="png")
+  save_dir = os.path.join(DATA_DIR, "..", "Plots")
+  canvas.print_figure(os.path.join(save_dir, fname + "_predicted_class.png"), format="png")
   print("saved {}".format(fname))

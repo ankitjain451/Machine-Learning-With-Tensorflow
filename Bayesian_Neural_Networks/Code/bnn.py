@@ -68,7 +68,7 @@ def main(argv):
     print("Preprocessing Done")
 
     # Plotting the input data
-    plot_input_data(X_train,y_train)
+    #plot_input_data(X_train,y_train)
 
     # Data Pipeline for modeling
     (images, targets, iter_handle,
@@ -130,6 +130,19 @@ def main(argv):
                                      feed_dict={iter_handle: test_handle})
                             for _ in range(NUM_MONTE_CARLO)])
         mean_probs = np.mean(probs, axis=0)
+
+        test_acc_dist = []
+        for prob in probs:
+            y_test_pred = np.argmax(prob, axis=1).astype(np.float32)
+            accuracy = (y_test_pred == y_test).mean() * 100
+            test_acc_dist.append(accuracy)
+
+        plt.hist(test_acc_dist)
+        plt.title("Histogram of prediction accuracies on test dataset")
+        plt.xlabel("Accuracy")
+        plt.ylabel("Frequency")
+        save_dir = os.path.join(DATA_DIR, "..", "Plots")
+        plt.savefig(os.path.join(save_dir,  "Test_Dataset_Prediction_Accuracy.png"))
 
         # Get the average accuracy
         Y_pred = np.argmax(mean_probs, axis=1)
