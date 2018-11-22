@@ -9,7 +9,10 @@ from parameters import *
 import tensorflow as tf
 import numpy as np
 import glob
-import wget
+try:
+    import wget
+except:
+    print ("Can't import wget as you are probably on windows laptop")
 
 def extract_files(data_dir,type = 'bags'):
     '''
@@ -42,20 +45,23 @@ def generate_dataset():
     3. Execute this function. This function will extract the handbags and shoe images from the datasets.
     '''
     if not os.path.exists(os.path.join(os.getcwd(), "edges2handbags")):
-        print ("Downloading dataset")
-        bag_data_link = 'https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/edges2handbags.tar.gz'
-        shoe_data_link = 'https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/edges2shoes.tar.gz'
-
-        wget.download(bag_data_link)
-        wget.download(shoe_data_link)
-
-        with tarfile.open('./edges2handbags.tar.gz') as tar:
-            tar.extractall()
-            tar.close()
-
-        with tarfile.open('./edges2shoes.tar.gz') as tar:
-            tar.extractall()
-            tar.close()
+        try:
+            print ("Downloading dataset")
+            bag_data_link = 'https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/edges2handbags.tar.gz'
+            shoe_data_link = 'https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/edges2shoes.tar.gz'
+    
+            wget.download(bag_data_link)
+            wget.download(shoe_data_link)
+    
+            with tarfile.open('./edges2handbags.tar.gz') as tar:
+                tar.extractall()
+                tar.close()
+    
+            with tarfile.open('./edges2shoes.tar.gz') as tar:
+                tar.extractall()
+                tar.close()
+        except:
+            print ("It seems you are on windows laptop. Please download the data as instructed in README before executing the code")
 
     extract_files("edges2handbags", 'bags')
     extract_files("edges2shoes", 'shoes')
