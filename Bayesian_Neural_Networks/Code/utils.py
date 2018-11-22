@@ -54,7 +54,10 @@ def normalize_and_reshape_img(img):
     return img
 
 def get_class(img_path):
-    return int(img_path.split('/')[-2])
+    try:
+        return int(img_path.split('/')[-2])
+    except:
+        return int(img_path.split('\\')[-2])
 
 def preprocess_and_save_data(data_type ='train'):
     '''
