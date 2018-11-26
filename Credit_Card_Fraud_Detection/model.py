@@ -141,6 +141,7 @@ class MODEL():
         plt.title('Precision By Recon Error Threshold Values')
         plt.xlabel('Threshold')
         plt.ylabel('Precision')
+	plt.xlim(0,200)
         plt.tight_layout()
         image_name = 'Precision_Threshold_Curve.png'
         fig.savefig(os.path.join(PLOTS_DIR, image_name), dpi=fig.dpi)
