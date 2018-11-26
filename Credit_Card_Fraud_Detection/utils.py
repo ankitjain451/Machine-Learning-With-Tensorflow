@@ -8,8 +8,7 @@ import zipfile
 from parameters import *
 
 def read_data():
-    zf = zipfile.ZipFile(os.path.join(DATA_DIR,"creditcardfraud.zip")
-    #data = pd.read_csv(os.path.join(DATA_DIR,"creditcard.csv"))
+    zf = zipfile.ZipFile(os.path.join(DATA_DIR,"creditcardfraud.zip"))
     data = pd.read_csv(zf.open("creditcard.csv"))
     return data
 
