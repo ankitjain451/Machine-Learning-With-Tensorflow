@@ -11,4 +11,4 @@ conda create -n TensorFlowML
 Activate the Virtual Environment as :
 source activate TensorflowML
 
-Each project has their own README and requirements.txt to install relevant packages. Please README of each chapter before executing the codes. 
+Each project has their own README and requirements.txt to install relevant packages. Please README of each chapter before executing the codes.Also please refer to the software list in the book for minimum required packages for each chapter.  
