@@ -1,15 +1,13 @@
 # Sentiment Analysis Using Tensorflow Js
 This folder consists of the code for Chapter 1 of the book. It creates a sentiment anaylsis model using the movie reviews dataset mentioned.
 ### Installations 
-* This code is checked on using native Python 2.7 (not anaconda) 
-* Create a virtual environment using the following commands
+* This code is checked on using native Python 3.6 with Anaconda 
+* Create a conda virtual environment and install relevant packages using requirements.txt file 
 ```
-virtualenv -p path_to_python Ch1
-source Ch1/bin/activate
 pip install requirements.txt
 ```
 ### Python Code Run Instructions
-Navigate the terminal to the directory and execute the command in virtualenv
+Navigate the terminal to the directory and execute the command in virtual environment
 ```
 python main.py 
 ```
